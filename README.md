@@ -1,19 +1,20 @@
-## caterpillar - beginner - level 3
+## caterpillar - beginner - level 4
 
-### _The air feels thicker than before. There must be a horde of sludge._
+### _You can hear bow strings being stretched._
 
-> **TIP:** Be careful not to die! Use `warrior.health()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.
+> **TIP:** No new abilities this time, but you must be careful not to rest while taking damage. Save a `this.health` variable and compare it on each turn to see if you're taking damage.
 
 
 ### Floor Map
 
 ```
-╔═════════╗
-║@ s ss s>║
-╚═════════╝
+╔═══════╗
+║@ Sa S>║
+╚═══════╝
 
 @ = caterpillar (20 HP)
-s = Sludge (12 HP)
+S = Thick Sludge (24 HP)
+a = Archer (7 HP)
 > = stairs
 ```
 
@@ -21,15 +22,15 @@ s = Sludge (12 HP)
 
 #### Actions (only one per turn)
 
-* `warrior.rest()`: Gain 10% of max health back, but do nothing more.
 * `warrior.walk()`: Move one space in the given direction (forward by default).
 * `warrior.attack()`: Attack a unit in the given direction (forward by default) dealing 5 HP of damage.
+* `warrior.rest()`: Gain 10% of max health back, but do nothing more.
 
 #### Senses
 
-* `warrior.health()`: Return an integer representing your health.
 * `warrior.think()`: Think about your options before choosing an action (`console.log` replacement).
 * `warrior.feel()`: Return the adjacent space in the given direction (forward by default).
+* `warrior.health()`: Return an integer representing your health.
 
 ### Next Steps
 
