@@ -1,16 +1,16 @@
-## caterpillar - beginner - level 2
+## caterpillar - beginner - level 3
 
-### _It's too dark to see anything, but you smell sludge nearby._
+### _The air feels thicker than before. There must be a horde of sludge._
 
-> **TIP:** Use `warrior.feel().isEmpty()` to see if there's anything in front of you, and `warrior.attack()` to fight it. Remember, you can only do one action per turn.
+> **TIP:** Be careful not to die! Use `warrior.health()` to keep an eye on your health, and `warrior.rest()` to earn 10% of your max health back.
 
 
 ### Floor Map
 
 ```
-╔════════╗
-║@   s  >║
-╚════════╝
+╔═════════╗
+║@ s ss s>║
+╚═════════╝
 
 @ = caterpillar (20 HP)
 s = Sludge (12 HP)
@@ -21,13 +21,15 @@ s = Sludge (12 HP)
 
 #### Actions (only one per turn)
 
-* `warrior.attack()`: Attack a unit in the given direction (forward by default) dealing 5 HP of damage.
+* `warrior.rest()`: Gain 10% of max health back, but do nothing more.
 * `warrior.walk()`: Move one space in the given direction (forward by default).
+* `warrior.attack()`: Attack a unit in the given direction (forward by default) dealing 5 HP of damage.
 
 #### Senses
 
-* `warrior.feel()`: Return the adjacent space in the given direction (forward by default).
+* `warrior.health()`: Return an integer representing your health.
 * `warrior.think()`: Think about your options before choosing an action (`console.log` replacement).
+* `warrior.feel()`: Return the adjacent space in the given direction (forward by default).
 
 ### Next Steps
 
