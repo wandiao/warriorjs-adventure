@@ -8,21 +8,24 @@ class Player {
       this.warrior = warrior;
     }
     const health = warrior.health();
-    const spaces = warrior.look();
-    let unit; // 看到的第一个单位
-    for (const space of spaces) {
-      if (space.isUnit()) {
-        unit = space.getUnit();
-        break;
-      };
+    const BackSpaces = warrior.look('backward');
+    const frontSpaces = warrior.look();
+    const space = warrior.feel();                             // 面对的第一个单位
+    const backUnit = this.getLookUnit(BackSpaces);                 // 后面的第一个单位
+    const frontUnit = this.getLookUnit(frontSpaces);                // 前面的第一个单位
+    if (backUnit && backUnit.isEnemy()) {
+      return warrior.shoot('backward');
     }
-    if (!unit) {
-      return warrior.walk();
+    if (!frontUnit) {
+      if (space.isWall()) {
+        return warrior.pivot();
+      } else {
+        return warrior.walk();
+      }
     }
-    if (unit.isEnemy()) {
-      warrior.shoot();
+    if (frontUnit.isEnemy()) {
+      return warrior.shoot();
     } else {
-      const space = warrior.feel();
       if (space.getUnit() && space.getUnit().isBound()) {
         warrior.rescue();
       } else {
@@ -35,5 +38,15 @@ class Player {
   // 打印日志
   log(obj) {
     return this.warrior.think(JSON.stringify(obj));
+  }
+
+  // 获取第一个单位
+  getLookUnit(spaces) {
+    for (const space of spaces) {
+      if (space.isUnit()) {
+        return space.getUnit();
+      }
+    }
+    return null;
   }
 }
