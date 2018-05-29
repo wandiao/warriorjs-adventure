@@ -2,6 +2,7 @@ class Player {
   constructor() {
     this.health = 20;
     this.warrior = null;
+    this.turn = 1; // 回合数
   }
   playTurn(warrior) {
     if (!this.warrior) { // 保存角色对象
@@ -13,6 +14,9 @@ class Player {
     const space = warrior.feel();                             // 面对的第一个单位
     const backUnit = this.getLookUnit(BackSpaces);                 // 后面的第一个单位
     const frontUnit = this.getLookUnit(frontSpaces);                // 前面的第一个单位
+    if (this.turn === 1 && backUnit && backUnit.isBound()) {  // only for level6
+      return warrior.pivot();
+    }
     if (backUnit && backUnit.isEnemy()) {
       return warrior.shoot('backward');
     }
@@ -33,6 +37,7 @@ class Player {
       }
     }
     this.health = health;
+    this.turn++;
   }
 
   // 打印日志
